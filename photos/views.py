@@ -4,7 +4,7 @@ import datetime as dt
 
 # Create your views here.
 def welcome(request):
-     return HttpResponse('Welcome to Franco photo gallery')
+     return render(request,'welcome.html')
 
 
 def photos_of_day(request):
@@ -31,8 +31,9 @@ def convert_dates(dates):
     day = days[day_number]
     return day  
 def past_days_photos(request,past_date):
-        # Converts data from the string Url
-        date = dt.datetime.strptime(past_date,'%Y-%m-%d').date()
+
+    # Converts data from the string Url
+    date = dt.datetime.strptime(past_date,'%Y-%m-%d').date()
 
     day = convert_dates(date)
     html = f'''
