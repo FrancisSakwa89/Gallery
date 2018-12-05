@@ -4,12 +4,12 @@ import datetime as dt
 
 # Create your views here.
 def welcome(request):
-     return render(request,'welcome.html')
+     return render(request,'index.html')
 
 
 def photos_of_day(request):
     date = dt.date.today()
-    return render(request, 'all-photos/today-news.html', {"date": date,})
+    return render(request, 'all-photos/today-photos.html', {"date": date,})
 
     # FUNCTION TO CONVERT DATE OBJECT TO FIND EXACT DAY
     day = convert_dates(date)
