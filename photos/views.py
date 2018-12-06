@@ -47,3 +47,17 @@ def past_days_photos(request, past_date):
         return redirect(photos_of_day)
 
     return render(request, 'all-photos/past-photos.html', {"date": date})
+
+def location(request,loc):
+
+  locations = Location.objects.all()
+
+  if Location.objects.get(pk=loc):
+    images = Image.filter_by_location(loc)
+    title = (Location.objects.get(pk=loc)).location
+
+  else:
+    raise Http404()
+
+  return render(request,'location.html',{'title':title,'images':images, 'locations':locations})
+
