@@ -10,11 +10,12 @@ class Location(models.Model):
     class Meta:
         ordering = ['location']
 
-# class Image(models.Model):
-#     image = models.ImageField(upload_to = 'photos/')
-#     name = models.CharField(max_length=60)
-#     description = models.TextField()
-#     location = models.ForeignKey(Location,)
+class Image(models.Model):
+    image = models.ImageField(upload_to = 'photos/')
+    name = models.CharField(max_length=60)
+    description = models.TextField()
+    location = models.ForeignKey(Location,)
+    # category = models.ManyToManyField(Category)
 
 class Category(models.Model):
     category = models.CharField(max_length=60)
