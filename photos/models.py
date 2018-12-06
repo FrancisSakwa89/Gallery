@@ -49,7 +49,7 @@ class Image(models.Model):
 
   @classmethod
   def search_image(cls, search_category_id):
-    images = cls.objects.filter(Category=search_category_id)
+    images = cls.objects.filter(category=search_category_id)
     return images
 
   @classmethod
@@ -75,3 +75,7 @@ class Category(models.Model):
     category = cls.objects.get(pk=id)
     category = cls(category=category)
     category.save()
+  @classmethod
+  def search_by_title(cls,search_term):
+    news = cls.objects.filter(title__icontains=search_term)
+    return photos

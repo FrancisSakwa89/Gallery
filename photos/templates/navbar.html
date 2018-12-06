@@ -13,22 +13,27 @@
       
     </div>
   </div>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="{% url 'welcome' %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Choose location
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                {% if locations %}
-                  {% for loc in locations %}
-                <a class="dropdown-item" href="{% url 'loc' location.id %}">{{location.location}}</a>
-                  {% endfor %}
-                {% endif %}
-                <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{% url 'welcome' %}">All locations</a>
-            </li>
-              </div>
-          </ul>
-          
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="{% url 'welcome' %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Choose location
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      {% if locations %}
+        {% for location in loc %}
+      <a class="dropdown-item" href="{% url 'location' location.id %}">{{location.location}}</a>
+        {% endfor %}
+      {% endif %}
+      <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="{% url 'welcome' %}">All locations</a>
+  </li>
+    </div>
+</ul>
+<form class="col-sm-4 col-md-2 navbar-right" role="search" action="{% url 'search_results' %}">
+  <input class="form-control mr-sm-2" type="search" placeholder="Search Category" aria-label="Search" name="image">
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
+</div>
+      <!-- search form end -->
         </div>
       </nav>
 </body>

@@ -1,26 +1,30 @@
-from django.shortcuts import render,redirect
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, Http404
+from .models import Location, Category, Image
+from django.core.exceptions import ObjectDoesNotExist
 import datetime as dt
 
+# Create your views here.
 # Create your views here.
 def welcome(request):
      return render(request,'index.html')
 
 
-def photos_of_day(request):
+def today_photos(request):
     date = dt.date.today()
-    return render(request, 'all-photos/today-photos.html', {"date": date,})
+    photos = Category.today_photos()
+    return render(request, 'all-photos/today-photos.html', {"date": date,"photos":photos})
 
     # FUNCTION TO CONVERT DATE OBJECT TO FIND EXACT DAY
-    day = convert_dates(date)
-    html = f'''
-        <html>
-            <body>
-                <h1>Photos for {day} {date.day}-{date.month}-{date.year}</h1>
-            </body>
-        </html>
-            '''
-    return HttpResponse(html)
+    # day = convert_dates(date)
+    # html = f'''
+    #     <html>
+    #         <body>
+    #             <h1>Photos for {day} {date.day}-{date.month}-{date.year}</h1>
+    #         </body>
+    #     </html>
+    #         '''
+    # return HttpResponse(html)
 def convert_dates(dates):
 
     # Function that gets the weekday number for the date.
@@ -60,4 +64,30 @@ def location(request,loc):
     raise Http404()
 
   return render(request,'location.html',{'title':title,'images':images, 'locations':locations})
+
+
+def search_results(request):
+
+  locations = Location()
+  
+  if 'image' in request.GET and request.GET['image']:
+    search_term = request.GET.get('image')
+    message = f'{search_term}'
+    title = 'Search Results'
+
+    try:
+      no_ws = search_term.strip()
+      id = Category.objects.get(category__icontains = no_ws)
+      searched_images = Image.search_image(id)
+
+    except ObjectDoesNotExist:
+      searched_images = []
+
+    return render(request, 'all-photos/search.html',{'message':message ,'title':title, 'searched_images':searched_images,'locations':locations})
+
+  else:
+    message = 'You haven\'t searched for any location'
+    
+    title = 'Search Error'
+    return render(request,'all-photos/search.html',{'message':message,'title':title,'locations':locations})
 
