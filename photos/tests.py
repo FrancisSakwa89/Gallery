@@ -28,4 +28,14 @@ class LocationTestClass(TestCase):
         self.loc.save_location()
         locations = Location.objects.all()
         self.loc.delete_location()
-        self.assertTrue(len(locations) == 0)        
+        self.assertTrue(len(locations) == 0)
+
+    def test_update_method(self):
+        """
+        Function to test that location is being updated
+        """
+        self.loc.save_location()
+        new_loc = Location.objects.filter().update()
+        locations = Location.objects.all()
+        # self.loc.update_location()
+        self.assertTrue(locations)        

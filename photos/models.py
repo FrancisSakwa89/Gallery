@@ -13,6 +13,9 @@ class Location(models.Model):
         self.save()
     def delete_location(self):
         self.delete()
+    def update_location(self):
+        self.update()
+
 
 class Image(models.Model):
     image = models.ImageField(upload_to = 'photos/')
