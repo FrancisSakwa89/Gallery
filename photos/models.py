@@ -9,6 +9,8 @@ class Location(models.Model):
         return self.location
     class Meta:
         ordering = ['location']
+    def save_location(self):
+        self.save()
 
 class Image(models.Model):
     image = models.ImageField(upload_to = 'photos/')

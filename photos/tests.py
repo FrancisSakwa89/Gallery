@@ -8,7 +8,7 @@ class LocationTestClass(TestCase):
     """
     #Set up method
     def setUp(self):
-        self.loc= Location('Nairobi')
+        self.loc= Location()
 
     def test_instance(self):
         self.assertTrue(isinstance(self.loc, Location))
