@@ -25,6 +25,7 @@ class LocationTestClass(TestCase):
         """
         Function to test that location is being deleted
         """
-        self.loc.delete_location()
+        self.loc.save_location()
         locations = Location.objects.all()
+        self.loc.delete_location()
         self.assertTrue(len(locations) == 0)        
