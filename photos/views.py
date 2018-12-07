@@ -8,23 +8,11 @@ import datetime as dt
 # Create your views here.
 def welcome(request):
      return render(request,'index.html')
-
-
-def today_photos(request):
+    
+def photos_today(request):
     date = dt.date.today()
-    photos = Category.today_photos()
-    return render(request, 'all-photos/today-photos.html', {"date": date,"photos":photos})
-
-    # FUNCTION TO CONVERT DATE OBJECT TO FIND EXACT DAY
-    # day = convert_dates(date)
-    # html = f'''
-    #     <html>
-    #         <body>
-    #             <h1>Photos for {day} {date.day}-{date.month}-{date.year}</h1>
-    #         </body>
-    #     </html>
-    #         '''
-    # return HttpResponse(html)
+    photos = Image.todays_photos()
+    return render(request, 'all-photos/today-photos.html', {"date": date, "photos":photos})
 def convert_dates(dates):
 
     # Function that gets the weekday number for the date.
