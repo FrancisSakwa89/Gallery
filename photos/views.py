@@ -7,8 +7,11 @@ import datetime as dt
 # Create your views here.
 # Create your views here.
 def welcome(request):
-     return render(request,'index.html')
-    
+ images = Image.objects.all()
+ locations = Location.objects.all()
+ title = 'Homepage'
+ return render(request,'index.html')
+  
 def photos_today(request):
     date = dt.date.today()
     photos = Image.todays_photos()

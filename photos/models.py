@@ -15,8 +15,27 @@ class Location(models.Model):
         self.delete()
     def update_location(self):
         self.update()
+    @classmethod
+    def update_location(cls,id,name,description,location,category):
+        location = cls.objects.get(pk=id)
+        location = cls(name=name,description=description,location=location,category=category)
+        location.save()
 
+    @classmethod
+    def get_photo_location_by_id(cls, id):
+        location = cls.objects.get(pk=id)
+        return location
 
+    @classmethod
+    def search_location(cls, search_category_id):
+        locations = cls.objects.filter(category=search_category_id)
+        return location
+
+    @classmethod
+    def filter_by_location(cls, location):
+        locations = cls.objects.filter(location=location)
+        return location
+    
 class Image(models.Model):
   image = models.ImageField(upload_to = 'photos/')
   name = models.CharField(max_length=60)

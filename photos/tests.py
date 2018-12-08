@@ -71,7 +71,7 @@ class CategoryTestClass(TestCase):
         Function to test that a category's details can be updates
         """
         self.cat.save_category()
-        new_cat = Category.objects.filter(name='calm').update(name='good')
+        new_cat = Category.objects.filter(name='this').update(name='good')
         categories = Category.objects.get(name='good')
         self.assertTrue(categories.name, 'good')
 
