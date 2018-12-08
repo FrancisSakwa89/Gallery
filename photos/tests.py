@@ -15,20 +15,15 @@ class LocationTestClass(TestCase):
         self.assertTrue(isinstance(self.loc, Location))
 
     def test_save_method(self):
-        """
-        Function to test that location is being saved
-        """
         self.loc.save_location()
         locations = Location.objects.all()
-        self.assertTrue(len(Location) > 0)
+        self.assertTrue(len(locations) >0)   
 
     def test_delete_method(self):
-        """
-        Function to test that a location can be deleted
-        """
-        self.loc.save_location()
+        self.loc.save()
         self.loc.delete_location()
-        self.assertTrue(len(Locations) == 0)
+        locations = Location.objects.all()
+        self.assertTrue(len(locations) == 0)
     
     def test_update_method(self):
         """
@@ -91,7 +86,7 @@ class ImageTestClass(TestCase):
         self.cat.save_category()
 
         #creating an new image 
-        self.image = Image(location=self.loc, category = self.cat)
+        self.image = Image(location=self.loc)
 
     def test_instance(self):
         self.assertTrue(isinstance(self.image, Image))
@@ -138,10 +133,10 @@ class ImageTestClass(TestCase):
         image = Image.objects.filter(location=self.image.location)
         self.assertTrue(this_img, image)
 
-    def test_filter_by_category_name(self):
-        """
-        Function to test if you can get an image by its category name
-        """
-        self.image.save_image()
-        images = Image.search_image()
-        self.assertTrue(len(images)>0)
+    # def test_filter_by_category_name(self):
+    #     """
+    #     Function to test if you can get an image by its category name
+    #     """
+    #     self.image.save_image()
+    #     images = Image.search_image('search_category_id')
+    #     self.assertTrue(len(images)>0)

@@ -38,7 +38,7 @@ def search_results(request):
   else:
     message = 'You din\'t searched for any location'
     
-    title = 'Search Error'
+    title = 'Not found'
     return render(request,'search.html',{'message':message,'title':title,'locations':locations})
 
 
