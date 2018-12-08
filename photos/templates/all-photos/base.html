@@ -25,8 +25,23 @@
     {%endblock%}
 
     {% block scripts %}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {{block.super}}
+    <script>
+      function copyLink(id) {
+        /* Get the text field */
+        var copyText = document.getElementById("link" + id);
+        /* Select the text field */
+        copyText.select();
+        /* Copy the text inside the text field */
+        document.execCommand("copy");
+    
+      }
+    </script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
      {% bootstrap_javascript %}
     {% endblock %}
+        <script src="" async defer></script>
+
 </body>
 </html>

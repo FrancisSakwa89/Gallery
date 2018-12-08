@@ -1,14 +1,15 @@
 from django.test import TestCase
-from .models import Location,Category,Image
+from .models import Location, Category, Image
 
 # Create your tests here.
+
 class LocationTestClass(TestCase):
     """
     Tests Location class and its functions
     """
     #Set up method
     def setUp(self):
-        self.loc= Location()
+        self.loc = Location()
 
     def test_instance(self):
         self.assertTrue(isinstance(self.loc, Location))
@@ -19,26 +20,25 @@ class LocationTestClass(TestCase):
         """
         self.loc.save_location()
         locations = Location.objects.all()
-        self.assertTrue(len(locations) > 0)    
+        self.assertTrue(len(Location) > 0)
 
     def test_delete_method(self):
         """
-        Function to test that location is being deleted
+        Function to test that a location can be deleted
         """
         self.loc.save_location()
-        locations = Location.objects.all()
         self.loc.delete_location()
-        self.assertTrue(len(locations) == 0)
-
+        self.assertTrue(len(Locations) == 0)
+    
     def test_update_method(self):
         """
-        Function to test that location is being updated
+        Function to test that a location's details can be updates
         """
         self.loc.save_location()
-        new_loc = Location.objects.filter().update()
-        locations = Location.objects.all()
-        # self.loc.update_location()
-        self.assertTrue(locations)    
+        new_place = Location.objects.filter().update()
+        locations = Location.objects.get()
+        self.assertTrue(locations)
+
 
 class CategoryTestClass(TestCase):
     """
@@ -46,7 +46,7 @@ class CategoryTestClass(TestCase):
     """
     #Set up method
     def setUp(self):
-        self.cat = Category(name='this', description='testing pic')
+        self.cat = Category()
     #Testing instance
     def test_instance(self):
         self.assertTrue(isinstance(self.cat, Category))
@@ -71,9 +71,9 @@ class CategoryTestClass(TestCase):
         Function to test that a category's details can be updates
         """
         self.cat.save_category()
-        new_cat = Category.objects.filter(name='this').update(name='good')
-        categories = Category.objects.get(name='good')
-        self.assertTrue(categories.name, 'good')
+        new_cat = Category.objects.filter().update()
+        categories = Category.objects.get()
+        self.assertTrue(categories)
 
 
 class ImageTestClass(TestCase):
@@ -87,11 +87,11 @@ class ImageTestClass(TestCase):
         self.loc.save_location()
 
         #creating a new category and saving it
-        self.cat = Category(name='calm', description='test2')
+        self.cat = Category()
         self.cat.save_category()
 
         #creating an new image 
-        self.image = Image(photo='come.jpg', name='name', description = 'calm photo', location=self.locale, category = self.cat)
+        self.image = Image(location=self.loc, category = self.cat)
 
     def test_instance(self):
         self.assertTrue(isinstance(self.image, Image))
@@ -116,9 +116,9 @@ class ImageTestClass(TestCase):
         Function to test that an image's details can be updates
         """
         self.image.save_image()
-        new_image = Image.objects.filter(photo='come.jpg').update(photo='good.jpg')
-        images = Image.objects.get(photo='good.jpg')
-        self.assertTrue(images.photo, 'good.jpg')
+        new_image = Image.objects.filter().update()
+        images = Image.objects.get()
+        self.assertTrue(images)
 
     def test_get_image_by_id(self):
         """
@@ -143,5 +143,5 @@ class ImageTestClass(TestCase):
         Function to test if you can get an image by its category name
         """
         self.image.save_image()
-        images = Image.search_image('this')
+        images = Image.search_image()
         self.assertTrue(len(images)>0)

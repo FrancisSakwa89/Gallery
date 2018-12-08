@@ -9,7 +9,7 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="{% url 'photosToday' %}">HOME GALLERY</a>
+      <a class="navbar-brand" href="{% url 'welcome' %}">HOME GALLERY</a>
       
     </div>
   </div>
@@ -40,6 +40,12 @@
       {% endif %}
       <div class="dropdown-divider"></div>
     <a class="dropdown-item" href="{% url 'welcome' %}">All categories</a>
+    <option value="0"> Categories</option>
+                          <option class="Entertainment" href="{% url 'welcome' %}" value="community"> Entertainment</option>
+                          <option value=" Education" href="{% url 'welcome' %}"> Education</option>
+                          <option value="Sports" href="{% url 'welcome' %}"> Sports</option>
+                          <option value="Bussiness" href="{% url 'welcome' %}"> Bussiness</option>
+                          <option value="Enterprenuership" href="{% url 'welcome' %}"> Enterprenuership</option>
   </li>
     </div>
 </nav>
