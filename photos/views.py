@@ -4,9 +4,11 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from .models import Location, Category, Image
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import PhotosLetterForm
+from django.contrib.auth.decorators import login_required.
 # Create your views here.
 
 #for displaying homepage
+@login_required(login_url='/accounts/login/')
 def welcome(request):
   images = Image.objects.all()
   locations = Location.objects.all()
@@ -79,7 +81,7 @@ def past_days_photos(request,past_date):
     if date == dt.date.today():
         return redirect(photos_today)
     
-    news = images.days_photos(date)
+    photos = images.days_photos(date)
 
     return render(request, 'all-photos/past-photos.html', {"date":date,"photos":photos})
     
