@@ -5,6 +5,8 @@ from .models import Location, Category, Image
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import PhotosLetterForm
 from django.contrib.auth.decorators import login_required.
+from .email import send_welcome_email
+
 # Create your views here.
 
 #for displaying homepage
@@ -20,10 +22,11 @@ def welcome(request):
             email = form.cleaned_data['email']
             recipient = PhotosLetterRecipients(name = name,email =email)
             recipient.save()
+            send_welcome_email(name,email)
             HttpResponseRedirect('welcome')
   else:
         form = PhotosLetterForm()
-  return render(request, 'index.html', {'images':images,'title':title,'locations':locations, 'letterForm':form})
+  return render(request, 'index.html', {'images':images,'title':title,'locations':locations,"photos":photos, 'letterForm':form})
 
 
 #for displaying search results
