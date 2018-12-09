@@ -33,26 +33,48 @@ def search_results(request):
     except ObjectDoesNotExist:
       searched_images = []
 
-    return render(request, 'search.html',{'message':message ,'title':title, 'searched_images':Image.search_image(id),'locations':locations})
+    return render(request, 'search.html',{'message':message ,'title':title, 'searched_images':searched_images,'locations':locations})
 
   else:
-    message = 'You din\'t searched for any location'
+    message = 'You din\'t searched for any category'
     
     title = 'Not found'
     return render(request,'search.html',{'message':message,'title':title,'locations':locations})
 
 
 #for displaying images by location
-def location(request,loc):
+def location(request,location):
 
   locations = Location.objects.all()
 
-  if Location.objects.get(pk=loc):
-    images = Image.filter_by_location(loc)
-    title = (Location.objects.get(pk=loc)).location
+  if Location.objects.get(pk=location):
+    images = Image.filter_by_location(location)
+    title = (Location.objects.get(pk=location)).location
 
   else:
     raise Http404()
 
   return render(request,'location.html',{'title':title,'images':images, 'locations':locations})
 
+def past_days_photos(request,past_date):
+    try:
+
+        #Converts data from the string Url
+        date = dt.datetime.strptime(past_date,'%Y-%m-%d').date()
+    
+    except ValueError:
+        #Raise 404  error when ValueError is thrown
+        raise Http404()
+        assert False
+
+    if date == dt.date.today():
+        return redirect(photos_today)
+    
+    news = images.days_photos(date)
+
+    return render(request, 'all-photos/past-photos.html', {"date":date,"photos":photos})
+    
+def photos_today(request):
+    date = dt.date.today()
+    photos = Image.todays_photos()
+    return render(request, 'all-photos/today-photos.html', {"date": date, "photos":photos})

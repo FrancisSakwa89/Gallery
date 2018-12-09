@@ -10,13 +10,12 @@
     {% endif %}
 
     <div class="container">
-        <div id='intro-home'>
-            <h2>Search</h2>
+            <h1>Searching ...</h1>
             <hr>
         {% if searched_images%}
-          <h7>Found {{ searched_images|length }} photos for the searched term '{{message}}'</h7>
+          <h3>Found {{ searched_images|length }} photos for the searched term '{{message}}'</h3>
         {% else %}
-          <h7> Found 0 photos for the search term '{{message}}'</h7>
+          <h3> Found 0 photos for the search term '{{message}}'</h3>
         {% endif %}
                 <br>
         </div>
@@ -59,5 +58,5 @@
         </div>
         {% endif %}
       </div>
-
+    
 {% endblock %}

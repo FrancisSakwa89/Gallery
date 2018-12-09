@@ -1,4 +1,6 @@
 from django.db import models
+import datetime as dt
+from django.test import TestCase
 
 # Create your models here.
 
@@ -51,6 +53,7 @@ class Image(models.Model):
   description = models.TextField()
   location = models.ForeignKey(Location,on_delete=models.CASCADE)
   Category = models.ManyToManyField(Category)
+  pub_date = models.DateTimeField(auto_now_add=True)
 
   def __str__(self):
     return self.name
@@ -62,6 +65,16 @@ class Image(models.Model):
 
   def delete_image(self):
     self.delete()
+  @classmethod
+  def todays_photos(cls):
+        today = dt.date.today()
+        photos = cls.objects.filter(pub_date__date = today)
+        return photos
+
+  @classmethod
+  def days_photos(cls,date):
+        photos = cls.objects.filter(pub_date__date = date)
+        return photos
 
   @classmethod
   def update_image(cls,id,name,description,location,category):

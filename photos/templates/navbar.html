@@ -39,15 +39,20 @@
         {% endfor %}
       {% endif %}
       <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="{% url 'welcome' %}">All categories</a>
-    <option value="0"> Categories</option>
-                          <option class="Entertainment" href="{% url 'welcome' %}" value="community"> Entertainment</option>
-                          <option value=" Education" href="{% url 'welcome' %}"> Education</option>
-                          <option value="Sports" href="{% url 'welcome' %}"> Sports</option>
-                          <option value="Bussiness" href="{% url 'welcome' %}"> Bussiness</option>
-                          <option value="Enterprenuership" href="{% url 'welcome' %}"> Enterprenuership</option>
-  </li>
+    <a class="dropdown-item" href="{% url 'welcome' %}">All categories </a>
+    <option value="0"> ( Only search through search button)</option>
+    <a  href="{% url 'search_results' %}"> Food </a>
+    <a  href="{% url 'search_results' %}"> Bussiness </a>
+    <a  href="{% url 'search_results' %}"> Education </a>
+    <a  href="{% url 'search_results' %}"> Sports </a>
+    <a  href="{% url 'search_results' %}"> Entertainment </a>
+    <a  href="{% url 'search_results' %}"> Culture </a>
+
     </div>
+    <form class="col-sm-2 col-md-2 navbar-right" role="search" action="{% url 'search_results' %}">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search Location" aria-label="Search" name="location">
+        <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+      </form>
 </nav>
 <nav>
   

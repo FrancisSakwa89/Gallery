@@ -1,5 +1,6 @@
 from django.test import TestCase
 from .models import Location, Category, Image
+import datetime as dt
 
 # Create your tests here.
 
@@ -120,23 +121,34 @@ class ImageTestClass(TestCase):
         Function to test if you can get an image by its id
         """
         self.image.save_image()
-        this_img= self.image.get_image_by_id(self.image.id)
+        my_img= self.image.get_image_by_id(self.image.id)
         image = Image.objects.get(id=self.image.id)
-        self.assertTrue(this_img, image)
+        self.assertTrue(my_img, image)
 
     def test_filter_by_location(self):
         """
         Function to test if you can get an image by its location
         """
         self.image.save_image()
-        this_img = self.image.filter_by_location(self.image.location)
+        my_img = self.image.filter_by_location(self.image.location)
         image = Image.objects.filter(location=self.image.location)
-        self.assertTrue(this_img, image)
+        self.assertTrue(my_img, image)
 
     # def test_filter_by_category_name(self):
     #     """
     #     Function to test if you can get an image by its category name
     #     """
     #     self.image.save_image()
-    #     images = Image.search_image('search_category_id')
+    #     this_img = self.image.filter_by_category(self.image.Category)
+    #     images = Image.search_image('my')
     #     self.assertTrue(len(images)>0)
+
+    def test_get_photos_today(self):
+        today_photos = Image.todays_photos()
+        # self.assertTrue(len(today_photos)>0)
+
+    def test_get_photos_by_date(self):
+        test_date = '2017-03-17'
+        date = dt.datetime.strptime(test_date, '%Y-%m-%d').date()
+        photos_by_date = Image.days_photos(date)
+        self.assertTrue(len(photos_by_date) == 0) 

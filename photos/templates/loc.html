@@ -1,14 +1,26 @@
 {% extends "all-photos/base.html" %}
-
-{% block content %}
 <div class="container">
-        <h2>{{title}} Albumn.</h2>
+    {% block content %}
+    {% if searched_images %}
+    {% for image in searched_images %}
+      
+    {% endfor %}
+    {% endif %}
+    <div class="container">
+
+        <h3>Searching ...</h3>
         <hr>
+    {% if searched_locations%}
+      <h3>Found {{ searched_locations|length }} photos for the searched term '{{message}}'</h3>
+    {% else %}
+      <h3> Found 0 photos for the search term '{{message}}'</h3>
+    {% endif %}
+            <br>
     </div>
     
-    {% if images %}
+    {% if searched_locations%}
     <div class="class="gallery equalsize"">
-      {% for image in images %}
+      {% for location in searched_locations %}
 
           <!-- Image -->
           <img class="gallery-item" src="{{image.image.url}}" alt="{{ image.name }}" data-toggle="modal" data-target="#a{{ image.id }}">
@@ -46,4 +58,3 @@
   </div>
 
 {% endblock %}
-
