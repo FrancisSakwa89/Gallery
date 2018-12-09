@@ -5,6 +5,8 @@ from django.conf.urls.static import static
 
 
 urlpatterns=[
+    # url(r'^logout/$',views.logout, {'next_page': '/'}, name='logout'),
+    # url(r'^login/$',views.login, {'login.html': 'core/login.html'}, name='login'),
     url('^$',views.welcome,name = 'welcome'),
     url('^$',views.photos_today,name='photosToday'),
     url(r'^search/', views.search_results,name = 'search_results'),

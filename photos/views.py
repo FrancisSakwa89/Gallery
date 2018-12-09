@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from .models import Location, Category, Image
 from django.core.exceptions import ObjectDoesNotExist
-
+from .forms import PhotosLetterForm
 # Create your views here.
 
 #for displaying homepage
@@ -11,8 +11,17 @@ def welcome(request):
   images = Image.objects.all()
   locations = Location.objects.all()
   title = 'Home'
-
-  return render(request, 'index.html', {'images':images,'title':title,'locations':locations})
+  if request.method == 'POST':
+        form = PhotosLetterForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['your_name']
+            email = form.cleaned_data['email']
+            recipient = PhotosLetterRecipients(name = name,email =email)
+            recipient.save()
+            HttpResponseRedirect('welcome')
+  else:
+        form = PhotosLetterForm()
+  return render(request, 'index.html', {'images':images,'title':title,'locations':locations, 'letterForm':form})
 
 
 #for displaying search results
@@ -78,3 +87,17 @@ def photos_today(request):
     date = dt.date.today()
     photos = Image.todays_photos()
     return render(request, 'all-photos/today-photos.html', {"date": date, "photos":photos})
+
+# def logout(request):
+# #   images = Image.objects.all()
+# #   locations = Location.objects.all()
+# #   title = 'Home'
+
+#   return render(request, 'index.html')
+
+# def login(request):
+# #   images = Image.objects.all()
+# #   locations = Location.objects.all()
+# #   title = 'Home'
+
+#   return render(request, 'login.html')

@@ -32,7 +32,7 @@ class Category(models.Model):
     return self.category
   class Meta:
     ordering = ['category']
-    verbose_name_plural = 'Categories'
+    # verbose_name_plural = 'Categories'
 
   def save_category(self):
     self.save()
@@ -102,3 +102,6 @@ class Image(models.Model):
 #         photos_image_Category = cls.objects.filter(photos_image_Category = photos_image_Category)
 #         return photos_image_Category
 
+class PhotosLetterRecipients(models.Model):
+    name = models.CharField(max_length = 30)
+    email = models.EmailField()
