@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from .models import Location, Category, Image
 from django.core.exceptions import ObjectDoesNotExist
@@ -30,6 +29,7 @@ def welcome(request):
 
 
 #for displaying search results
+@login_required(login_url='/accounts/login/')
 def search_results(request):
 
   locations = Location.objects.all()

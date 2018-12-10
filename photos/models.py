@@ -24,6 +24,9 @@ class Location(models.Model):
     location = cls(location=location)
     location.save()
 
+class PhotosLetterRecipients(models.Model):
+    name = models.CharField(max_length = 30)
+    email = models.EmailField()
 
 class Category(models.Model):
   category = models.CharField(max_length=60)
@@ -102,6 +105,4 @@ class Image(models.Model):
 #         photos_image_Category = cls.objects.filter(photos_image_Category = photos_image_Category)
 #         return photos_image_Category
 
-class PhotosLetterRecipients(models.Model):
-    name = models.CharField(max_length = 30)
-    email = models.EmailField()
+

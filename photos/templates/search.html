@@ -2,24 +2,23 @@
 
 {% block content %}
 
-    
+    <div class="row" style="background: linear-gradient(to right, #141e30, #243b55);">
     {% if searched_images %}
     {% for image in searched_images %}
       
     {% endfor %}
     {% endif %}
-
-    <div class="container">
-            <h1>Searching ...</h1>
-            <hr>
+        <h1 style="color: white">Searching ...</h1>
         {% if searched_images%}
-          <h3>Found {{ searched_images|length }} photos for the searched term '{{message}}'</h3>
+          <h3 style="text-align: center;color: white">Found {{ searched_images|length }} photos for the searched term '{{message}}'</h3>
         {% else %}
-          <h3> Found 0 photos for the search term '{{message}}'</h3>
+          <h3 style="text-align: center; color: white" > Found 0 photos for the search term '{{message}}'</h3>
         {% endif %}
+        <div class="col-sm-6 col-md-3">
+            <hr>
+
                 <br>
         </div>
-        
         {% if searched_images%}
         <div class="class="gallery equalsize"">
           {% for image in searched_images %}
@@ -45,7 +44,7 @@
                           <div class='desc-modal'>
                               {{image.description}}
                           </div>
-                          <input type="text" value="https://francogallery.com{{image.image.url}}" id="link{{image.id}}">
+                          <input type="text" value="https://gallery7.herokuapp.com{{image.image.url}}" id="link{{image.id}}">
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -58,5 +57,5 @@
         </div>
         {% endif %}
       </div>
-    
+    </div>
 {% endblock %}

@@ -1,14 +1,14 @@
 {% extends "all-photos/base.html" %}
 
 {% block content %}
-<div class="container">
-        <h2>{{title}} Album.</h2>
-        <hr>
+<div class="container-fluid" style="background: linear-gradient(to right, #141e30, #243b55);">
+
+    <h2 style="margin-left: 5%">{{title}} Album.</h2>
     </div>
-    
+    <div class="container-fluid" style="background: linear-gradient(to right, #141e30, #243b55);">
+
     {% if images %}
-    <div class="class="gallery equalsize"">
-      {% for image in images %}
+        {% for image in images %}
 
           <!-- Image -->
           <img class="gallery-item" src="{{image.image.url}}" alt="{{ image.name }}" data-toggle="modal" data-target="#a{{ image.id }}">
@@ -31,7 +31,7 @@
                       <div class='desc-modal'>
                           {{image.description}}
                       </div>
-                      <input type="text" value="https://francogallery.com{{image.image.url}}" id="link{{image.id}}">
+                      <input type="text" value="https://gallery7.herokuapp.com{{image.image.url}}" id="link{{image.id}}">
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -44,6 +44,6 @@
     </div>
     {% endif %}
   </div>
-
+</div>
 {% endblock %}
 

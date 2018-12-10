@@ -7,12 +7,14 @@
 </head>
 <body>
 <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
+  <!-- <div class="container-fluid"> -->
     <div class="navbar-header">
       <a class="navbar-brand" href="{% url 'welcome' %}">HOME GALLERY</a>
       
     </div>
   </div>
+  <div class="topnav" style="margin-left: 20%">
+    <li class="nav navbar-nav" style="color: white">
   <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="{% url 'welcome' %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Choose location
@@ -28,6 +30,7 @@
     </li>
     </div>
 </ul>
+<div class="nav navbar-right" style="margin-left: 50%">
 <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="{% url 'welcome' %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Choose Category
@@ -38,7 +41,7 @@
       <a class="dropdown-item" href="{% url 'category' category.id %}">{{category.category}}</a>
         {% endfor %}
       {% endif %}
-      <div class="dropdown-divider"></div>
+      <div class="dropdown-divider">
     <a class="dropdown-item" href="{% url 'welcome' %}">All categories </a>
     <option value="0"> ( Only search through search button)</option>
     <a  href="{% url 'search_results' %}"> Food </a>
@@ -47,8 +50,10 @@
     <a  href="{% url 'search_results' %}"> Sports </a>
     <a  href="{% url 'search_results' %}"> Entertainment </a>
     <a  href="{% url 'search_results' %}"> Culture </a>
-
+</div>
+</div>
     </div>
+    </li>
     <!-- <form class="col-sm-2 col-md-2 navbar-right" role="search" action="{% url 'search_results' %}">
         <input class="form-control mr-sm-2" type="search" placeholder="Search Location" aria-label="Search" name="location">
         <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
@@ -62,8 +67,38 @@
   <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
 </form>
 </div>
-</nav>
       <!-- search form end -->
         </div>
+        <div class="col-sm-6 col-md-6">
+            {% if user.is_authenticated %}
+            <ul>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account
+                          <span class="caret"></span>
+                      </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li>
+                    <a href="{%url 'welcome'%}">Home</a>
+                  </li>
+                  <li>
+                    <a href="/accounts/password/change">Change Password</a>
+                  </li>
+                  <li>
+                    <a href="/logout">Logout</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            {% else %}
+            <li>
+              <a class='btn btn-default' href="/accounts/login">Login</a>
+            </li>
+    
+            {% endif %}
+          </div>
+        </div>
+
+        </nav>
+
 </body>
 </html>

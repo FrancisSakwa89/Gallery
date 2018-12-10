@@ -1,24 +1,21 @@
 {% extends "all-photos/base.html" %}
 {% load bootstrap3 %}
 {% block content %}
-
-<div class="container-fluid">
-
-    <form  action="{%url 'welcome'%}" method="post">
+<div class="container-fluid" style="background: linear-gradient(to right, #141e30, #243b55);">
+    <form  action="{%url 'welcome'%}" method="post" style="margin-left: 30%;margin-right: 30%">
       {%csrf_token%}
   
       {% bootstrap_form letterForm layout='inline' %}
-      <input type="submit" value="Subscribe">
+      <input type="submit" class="btn btn-primary" value="Subscribe">
     </form>
-    <div class="container" style="text-align: center;background-color:#141e30; color: white">
-          <h1>Welcome to Photo Gallery .</h1>
-          <hr>
+    <div style="text-align: center;color: white">
+          <h1>Welcome to My Gallery .</h1>
           <p> My Photo Album.</p>
           <br>
       </div>
       
       {% if images %}
-      <div class="class="gallery equalsize"">
+      <!-- <div class="class="gallery equalsize""> -->
         {% for image in images %}
 
             <!-- Image -->
@@ -42,7 +39,7 @@
                         <div class='desc-modal'>
                             {{image.description}}
                         </div>                 
-                            <input   type:'text' value="https://francogallery.com{{image.image.url}}" id="link{{image.id}}">
+                            <input   type:'text' value="https://gallery7.herokuapp.com{{image.image.url}}" id="link{{image.id}}">
     
                     </div>
                     <div class="modal-footer">
@@ -56,5 +53,5 @@
       </div>
       {% endif %}
     </div>
-
+    </div>
       {% endblock %}
