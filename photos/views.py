@@ -4,7 +4,7 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from .models import Location, Category, Image
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import PhotosLetterForm
-from django.contrib.auth.decorators import login_required.
+from django.contrib.auth.decorators import login_required
 from .email import send_welcome_email
 
 # Create your views here.
@@ -26,7 +26,7 @@ def welcome(request):
             HttpResponseRedirect('welcome')
   else:
         form = PhotosLetterForm()
-  return render(request, 'index.html', {'images':images,'title':title,'locations':locations,"photos":photos, 'letterForm':form})
+  return render(request, 'index.html', {'images':images,'title':title,'locations':locations, 'letterForm':form})
 
 
 #for displaying search results
