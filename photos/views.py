@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404, HttpResponseRedirect
-from .models import Location, Category, Image
+from .models import Location, Category, Image,PhotosLetterRecipients
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import PhotosLetterForm
 from django.contrib.auth.decorators import login_required
