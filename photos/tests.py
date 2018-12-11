@@ -64,7 +64,7 @@ class CategoryTestClass(TestCase):
 
     def test_update_method(self):
         """
-        Function to test that a category's details can be updates
+        Function to test that a category's details can be updated
         """
         self.cat.save_category()
         new_cat = Category.objects.filter().update()
