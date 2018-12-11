@@ -54,7 +54,7 @@ class Image(models.Model):
   image = models.ImageField(upload_to = 'photos/')
   name = models.CharField(max_length=60)
   description = models.TextField()
-  location = models.ForeignKey(Location,on_delete=models.CASCADE)
+  location = models.ForeignKey(Location)
   Category = models.ManyToManyField(Category)
   pub_date = models.DateTimeField(auto_now_add=True)
 
