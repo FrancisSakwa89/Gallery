@@ -31,6 +31,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 # Application definition
+
 INSTALLED_APPS = [
     'bootstrap3',
     'photos.apps.PhotosConfig',
