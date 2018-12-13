@@ -5,7 +5,6 @@
 ## Description
 [GALLERY](https://gallery-franco7.herokuapp.com/)application allows users to have a view of different photos based on location and search acording to category.They can also copy link to that photo.
 
-Live site at: https://gallery-franco7.herokuapp.com/
 
 ## Setup/Installation Requirements
 1. Live site at https://gallery-franco7.herokuapp.com/
@@ -31,6 +30,10 @@ _*pip intsall django-bootstrap3._*
 
 # Running Tests
 * python3.6 manage.py test
+
+# Django Admin
+* Username:Francis
+* Password:francis2017
 
 ## Known Bugs 
 None
